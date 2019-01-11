@@ -13,7 +13,8 @@ class Board extends React.Component {
         const squares=this.state.squares.slice();
         squares[i]='X';
         this.setState({
-            squares:squares
+            squares:squares,
+            xIsNext:true
         });
     }
 
