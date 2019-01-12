@@ -3,6 +3,19 @@ import Board from './Board'
 
 
 class Game extends React.Component {
+    handleClick(i){
+        const history = this.state.history;
+        const current = history[history.length - 1];
+        const squares = current.squares.slice();
+        if (calculateWinner(squares)|| squares[i]) {
+            return;
+        }
+        squares[i]=this.state.xIsNext?'X':'O';
+        this.setState({
+            squares:squares,
+            xIsNext:!this.state.xIsNext
+           });
+    }
     constructor(props){
         super(props);
         this.state={
@@ -13,13 +26,25 @@ class Game extends React.Component {
         };
     }
     render() {
+        const history = this.state.history;
+        const current = history[history.length - 1];
+        const winner = calculateWinner(current.sqaures);
+        let status;
+        if(winner){
+            status = 'Winner: ' + winner;
+        }else {
+            status = 'Next Player : ' + (this.state.xIsNext?'X':'O');
+        }
         return (
             <div className="game">
                 <div className="game-board">
-                    <Board />
+                    <Board 
+                        squares={current.squares}
+                        onClick={(i)=>this.handleClick(i)}
+                    />
                 </div>
                 <div className="game-info">
-                    <div>{/**/}</div>
+                    <div>{status}</div>
                     <ol>{/**/}</ol>
                 </div>
             </div>
