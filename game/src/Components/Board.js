@@ -1,6 +1,7 @@
 import React from "react";
 import Square from "./Square";
 // import Game from "./Game";
+import PropTypes from "prop-types"
 
 class Board extends React.Component {
 
@@ -33,6 +34,19 @@ class Board extends React.Component {
       </div>
     );
   }
+}
+
+Board.defaultProps={
+        squares:[],
+        onClick:()=>{
+          console.log("default function was called")
+        }
+}
+
+Board.propTypes = {
+  squares:PropTypes.array,
+  onClick:PropTypes.func
+
 }
 
 
