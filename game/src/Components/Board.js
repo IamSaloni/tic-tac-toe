@@ -1,53 +1,44 @@
 import React from "react";
 import Square from "./Square";
 // import Game from "./Game";
-import PropTypes from "prop-types"
+import PropTypes from "prop-types";
 
-class Board extends React.Component {
+const renderSquare = (props, i) => {
+  return <Square value={props.squares[i]} onClick={() => props.onClick(i)} />;
+};
 
-  renderSquare(i) {
-    return (
-      <Square
-        value={this.props.squares[i]}
-        onClick={() => this.props.onClick(i)}
-      />
-    );
-  }
-  render() {
-    return (
-      <div>
-        <div className="board-row">
-          {this.renderSquare(0)}
-          {this.renderSquare(1)}
-          {this.renderSquare(2)}
-        </div>
-        <div className="board-row">
-          {this.renderSquare(3)}
-          {this.renderSquare(4)}
-          {this.renderSquare(5)}
-        </div>
-        <div className="board-row">
-          {this.renderSquare(6)}
-          {this.renderSquare(7)}
-          {this.renderSquare(8)}
-        </div>
+const Board = props => {
+  return (
+    <div>
+      <div className="board-row">
+        {renderSquare(props,0)}
+        {renderSquare(props,1)}
+        {renderSquare(props,2)}
       </div>
-    );
-  }
-}
+      <div className="board-row">
+        {renderSquare(props,3)}
+        {renderSquare(props,4)}
+        {renderSquare(props,5)}
+      </div>
+      <div className="board-row">
+        {renderSquare(props,6)}
+        {renderSquare(props,7)}
+        {renderSquare(props,8)}
+      </div>
+    </div>
+  );
+};
 
-Board.defaultProps={
-        squares:[],
-        onClick:()=>{
-          console.log("default function was called")
-        }
-}
+Board.defaultProps = {
+  squares: [],
+  onClick: () => {
+    console.log("default function was called");
+  }
+};
 
 Board.propTypes = {
-  squares:PropTypes.array,
-  onClick:PropTypes.func
-
-}
-
+  squares: PropTypes.array,
+  onClick: PropTypes.func
+};
 
 export default Board;
