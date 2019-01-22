@@ -1,2 +1,2 @@
 # tic-tac-toe
-game for two players
+game for single player using react js
